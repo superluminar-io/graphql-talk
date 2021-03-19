@@ -1,13 +1,14 @@
 import React from 'react';
+import Link from 'next/link';
 import { makeStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
+import {
+  AppBar, Toolbar, Button, Link as MaterialLink,
+} from '@material-ui/core';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
+    marginBottom: theme.spacing(4),
   },
   title: {
     flexGrow: 1,
@@ -18,15 +19,18 @@ export const Header = () => {
   const classes = useStyles();
 
   return (
-    <div className={classes.root}>
-      <AppBar position="static">
-        <Toolbar>
-          <Typography variant="h6" className={classes.title}>
+    <AppBar position="relative" component="header" className={classes.root}>
+      <Toolbar>
+        <Link href="/" passHref>
+          <MaterialLink variant="h6" color="inherit" className={classes.title}>
             Notes
-          </Typography>
-          <Button color="inherit">Login</Button>
-        </Toolbar>
-      </AppBar>
-    </div>
+          </MaterialLink>
+        </Link>
+
+        <Link href="/new" passHref>
+          <Button color="inherit" component="a">New note</Button>
+        </Link>
+      </Toolbar>
+    </AppBar>
   );
 };

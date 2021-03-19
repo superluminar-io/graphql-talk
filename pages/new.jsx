@@ -1,11 +1,11 @@
 import React from 'react';
 import { Container } from '@material-ui/core';
-import { NotesList } from '../src/ui/NotesList/NotesList';
+import { NewNoteForm } from '../src/ui/NewNoteForm/NewNoteForm';
 
 export default function Home() {
   return (
     <Container maxWidth="md" component="main">
-      <NotesList />
+      <NewNoteForm />
     </Container>
   );
 }

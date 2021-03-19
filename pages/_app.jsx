@@ -5,6 +5,7 @@ import Head from 'next/head';
 import { ThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import theme from '../src/theme';
+import { Header } from '../src/ui/Header/Header';
 
 export default function MyApp(props) {
   const { Component, pageProps } = props;
@@ -28,6 +29,7 @@ export default function MyApp(props) {
       </Head>
       <ThemeProvider theme={theme}>
         <CssBaseline />
+        <Header />
         <Component {...pageProps} />
       </ThemeProvider>
     </>
