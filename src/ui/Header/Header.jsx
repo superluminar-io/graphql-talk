@@ -4,11 +4,11 @@ import { makeStyles } from '@material-ui/core/styles';
 import {
   AppBar, Toolbar, Button, Link as MaterialLink,
 } from '@material-ui/core';
+import { Auth } from 'aws-amplify';
 
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-    marginBottom: theme.spacing(4),
   },
   title: {
     flexGrow: 1,
@@ -18,8 +18,12 @@ const useStyles = makeStyles((theme) => ({
 export const Header = () => {
   const classes = useStyles();
 
+  const signOut = async () => {
+    await Auth.signOut();
+  };
+
   return (
-    <AppBar position="relative" component="header" className={classes.root}>
+    <AppBar component="header" className={classes.root}>
       <Toolbar>
         <Link href="/" passHref>
           <MaterialLink variant="h6" color="inherit" className={classes.title}>
@@ -30,6 +34,7 @@ export const Header = () => {
         <Link href="/new" passHref>
           <Button color="inherit" component="a">New note</Button>
         </Link>
+        <Button onClick={signOut} color="inherit">Sign Out</Button>
       </Toolbar>
     </AppBar>
   );

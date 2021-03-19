@@ -4,6 +4,7 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import Divider from '@material-ui/core/Divider';
 import ListItemText from '@material-ui/core/ListItemText';
+import PropTypes from 'prop-types';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -12,31 +13,31 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export const NotesList = () => {
+export const NotesList = ({ notes }) => {
   const classes = useStyles();
 
   return (
     <List className={classes.root}>
-      <ListItem alignItems="flex-start">
-        <ListItemText
-          primary="Brunch this weekend?"
-          secondary="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. "
-        />
-      </ListItem>
-      <Divider variant="middle" component="li" />
-      <ListItem alignItems="flex-start">
-        <ListItemText
-          primary="Brunch this weekend?"
-          secondary="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. "
-        />
-      </ListItem>
-      <Divider variant="middle" component="li" />
-      <ListItem alignItems="flex-start">
-        <ListItemText
-          primary="Brunch this weekend?"
-          secondary="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. "
-        />
-      </ListItem>
+      {notes.map((note, index) => (
+        <React.Fragment key={note.createdAt}>
+          <ListItem alignItems="flex-start">
+            <ListItemText
+              primary={note.title}
+              secondary={note.text}
+            />
+          </ListItem>
+          {notes.length !== index + 1 && <Divider variant="middle" component="li" />}
+        </React.Fragment>
+      ))}
     </List>
   );
+};
+
+NotesList.propTypes = {
+  notes: PropTypes.arrayOf(PropTypes.exact({
+    __typename: PropTypes.string,
+    title: PropTypes.string,
+    text: PropTypes.string,
+    createdAt: PropTypes.string,
+  })).isRequired,
 };

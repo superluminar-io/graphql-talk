@@ -1,11 +1,22 @@
 import React from 'react';
-import { Container } from '@material-ui/core';
+import { gql, useQuery } from '@apollo/client';
 import { NotesList } from '../src/ui/NotesList/NotesList';
 
+const LIST_NOTES = gql`
+  query ListNotes {
+    listNotes {
+      title
+      text
+      createdAt
+    }
+  }
+`;
+
 export default function Home() {
-  return (
-    <Container maxWidth="md" component="main">
-      <NotesList />
-    </Container>
-  );
+  const { loading, error, data } = useQuery(LIST_NOTES);
+
+  if (loading) return 'Loading...';
+  if (error) return `Error! ${error.message}`;
+
+  return <NotesList notes={data.listNotes} />;
 }
