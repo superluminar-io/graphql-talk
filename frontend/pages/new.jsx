@@ -5,7 +5,7 @@ import { NewNoteForm } from '../src/ui/NewNoteForm/NewNoteForm';
 
 const NEW_NOTE = gql`
   mutation NewNote($title: String!, $text: String!) {
-    createNote(input: { title: $title, text: $text }) {
+    createNote(title: $title, text: $text) {
       title
       text
     }
