@@ -1,0 +1,15 @@
+scalar AWSDateTime
+
+type Mutation {
+  createNote(title: String!, text: String!): Note!
+}
+
+type Note {
+  createdAt: AWSDateTime!
+  title: String!
+  text: String!
+}
+
+type Query {
+  listNotes: [Note!]!
+}
