@@ -15,9 +15,9 @@ import { Header } from '../src/ui/Header/Header';
 
 Amplify.configure({
   Auth: {
-    region: 'eu-central-1',
-    userPoolId: 'eu-central-1_J0Lq8JzbH',
-    userPoolWebClientId: '1u2uaidnf7kud7kki6flbe2csh',
+    region: process.env.NEXT_PUBLIC_COGNITO_REGION,
+    userPoolId: process.env.NEXT_PUBLIC_COGNITO_USER_POOL_ID,
+    userPoolWebClientId: process.env.NEXT_PUBLIC_COGNITO_USER_POOL_WEB_CLIENT_ID,
     mandatorySignIn: false,
   },
 });
@@ -34,7 +34,7 @@ export default function MyApp(props) {
   }, []);
 
   const httpLink = createHttpLink({
-    uri: 'https://znf6d4kbejejzmxvi2vrybkwei.appsync-api.eu-central-1.amazonaws.com/graphql',
+    uri: process.env.NEXT_PUBLIC_API_ENDPOINT,
   });
 
   const authLink = setContext(async (_, { headers }) => {
@@ -56,7 +56,7 @@ export default function MyApp(props) {
   return (
     <AmplifyAuthenticator>
       <Head>
-        <title>Notes App /w AWS AppSync</title>
+        <title>Notes App w/ AWS AppSync</title>
         <link rel="icon" href="/favicon.ico" />
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
