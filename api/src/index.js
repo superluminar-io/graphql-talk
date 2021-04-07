@@ -6,13 +6,13 @@ const typeDefs = readFileSync('./src/schema.graphql').toString('utf-8');
 const notes = [
   {
     createdAt: '2021-04-06T19:05:34.042Z',
-    title: 'The Awakening',
-    text: 'Kate Chopin',
+    title: 'Est non incididunt fugiat consectetur anim velit',
+    text: 'Aliquip excepteur velit officia labore elit aliquip non fugiat ad sint anim ipsum.',
   },
   {
     createdAt: '2021-03-06T19:05:34.042Z',
-    title: 'City of Glass',
-    text: 'Paul Auster',
+    title: 'Duis incididunt ut minim incididunt',
+    text: 'Enim nulla anim aliquip magna dolor et esse sint ad.',
   },
 ];
 
